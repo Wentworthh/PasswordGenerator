@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using TextCopy;
 
@@ -17,7 +18,7 @@ namespace PasswordGen
 /  _>  ___ ._ _  ___  _ _  ___ _| |_ ___  _ _ 
 | <_/\/ ._>| ' |/ ._>| '_><_> | | | / . \| '_>
 `____/\___.|_|_|\___.|_|  <___| |_| \___/|_| 
-.
+
 ____________________________________________________
 ";
 
@@ -45,6 +46,10 @@ ____________________________________________________
                     ClipboardService.SetText(GeneratePassword(length)); // use textcopy package and pass the generated value in it
                 }
             }
+
+            // Wait for user input before closing
+            Console.WriteLine("Press Enter to end the program...");
+            Console.ReadLine();
         }
 
         public static string GeneratePassword(int length)
