@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text;
 using TextCopy;
 
 namespace PasswordGen
@@ -42,7 +40,7 @@ ____________________________________________________
                 }
                 else
                 {
-                    Console.WriteLine("Password has been copied to clipboard"); // pw doesn't show for privacy sake, and it's already copied to clipboard
+                    Console.WriteLine("Password has been copied to clipboard");
                     ClipboardService.SetText(GeneratePassword(length)); // use textcopy package and pass the generated value in it
                 }
             }
@@ -78,18 +76,6 @@ ____________________________________________________
             }
             // Shuffle the password to ensure randomness
             return new string(sb.ToString().OrderBy(_ => randomize.Next()).ToArray());
-
-            // var generatedvalue = sb.ToString(); // convert int value to string
-            // return generatedvalue;
-        }
-
-        public static bool IsPasswordStrong(string password)
-        {
-            return password.Length >= 8 &&
-            Regex.IsMatch(password, @"\d") && // Contains a digit
-            Regex.IsMatch(password, @"[a-z]") && // Contains a lowercase letter
-            Regex.IsMatch(password, @"[A-Z]") && // Contains an uppercase letter
-            Regex.IsMatch(password, @"[#$%&'()*+,-./:;<=>?@[\]^_`{|}~]"); // Contains a special character
         }
     }
 }
