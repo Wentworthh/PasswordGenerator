@@ -21,12 +21,10 @@ ____________________________________________________
 ";
 
             Console.WriteLine(title);
-
-            // Start
             Console.Write("Create a password starting from 8 minimum characters: ");
 
             int length = 0;
-            while (length < 8 || length > 127)
+            while (length < 12 || length > 127)
             {
                 if (!int.TryParse(Console.ReadLine(), out length))
                 {
@@ -34,9 +32,9 @@ ____________________________________________________
                     continue;
                 }
 
-                if (length < 8 || length > 127)
+                if (length < 12 || length > 127)
                 {
-                    Console.WriteLine("Your password doesn't have the necessary security requirements (8 min. characters, 127 max)");
+                    Console.WriteLine("Your password doesn't have the necessary security requirements (12 minimum characters, 127 maximum)");
                 }
                 else
                 {
@@ -52,10 +50,9 @@ ____________________________________________________
 
         public static string GeneratePassword(int length)
         {
-
             const string numbers = "0123456789";
-            const string lower = "abdcefghilmnopqrstuvwxyz";
-            const string upper = "ABCDEFGHILMNOPQRSTUVWXYZ";
+            const string lowerChar = "abdcefghilmnopqrstuvwxyz";
+            const string upperChar= "ABCDEFGHILMNOPQRSTUVWXYZ";
             const string special = "#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 
             StringBuilder sb = new StringBuilder();
@@ -63,12 +60,12 @@ ____________________________________________________
 
             // Ensure at least one character from each category
             sb.Append(numbers[randomize.Next(numbers.Length)]);
-            sb.Append(lower[randomize.Next(lower.Length)]);
-            sb.Append(upper[randomize.Next(upper.Length)]);
+            sb.Append(lowerChar[randomize.Next(lowerChar.Length)]);
+            sb.Append(upperChar[randomize.Next(upperChar.Length)]);
             sb.Append(special[randomize.Next(special.Length)]);
 
-            string allChars = numbers + lower + upper + special;
-            // Fill the rest of the password with random characters
+            string allChars = numbers + lowerChar + upperChar + special;
+            // Include 1 of each char + fill the rest of the password with random characters
             for (int i = 4; i < length; i++)
             {
                 int index = randomize.Next(allChars.Length);
