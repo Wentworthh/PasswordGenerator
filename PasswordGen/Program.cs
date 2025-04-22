@@ -21,7 +21,7 @@ ____________________________________________________
 ";
 
             Console.WriteLine(title);
-            Console.Write("Create a password starting from 8 minimum characters: ");
+            Console.Write("Create a password starting from 12 minimum characters: ");
 
             int length = 0;
             while (length < 12 || length > 127)
